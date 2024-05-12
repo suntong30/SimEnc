@@ -4,10 +4,12 @@
 
 SimEnc is a high-performance similarity-preserving encryption approach for deduplication of encrypted Docker images. This repo contains the implementation of SimEnc prototype, baseline approaches, and a trace analysis tool used in our USENIX ATC 2024 paper.
 
-- `./simenc`: includes the codes of simenc prototype.
+- `./simenc`: includes the code of SimEnc prototype.
 - `./workload`: includes the relevant crawler and data mapping code.
 - `./partial`: includes  partial decode/encode tools , which are used  for processing files in gzip format.
 - `./warmup_and_run`: includes configuration files and experimental code related to warmup and run phases.
+- `./training`: includes the training code of semantic hash model for MLE. The pretrained models are available in the Goolge Drive (https://drive.google.com/drive/folders/18DrBxaAprpCOPuk1dgeKdm6GIUArmsbR?usp=drive_link)
+- `./inference`: includes the inference code of SimEnc for deduplication.
 
 ## Build
 
