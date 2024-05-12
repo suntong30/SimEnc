@@ -75,7 +75,7 @@ If you have started 6 redis-server instances on local ports 6379~6384, you can s
 ### 2. Start registry service
 
 ```shell
-cd ./Secd2/bin
+cd ./simenc/bin
 ./registry serve config.yaml
 ```
 
