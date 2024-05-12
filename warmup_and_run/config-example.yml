@@ -1,0 +1,28 @@
+verbose: true # optional input
+client_info:
+    client_list:
+    - localhost:8081
+    port: 8080
+    threads: 10
+    wait: false
+trace: # mandatory field
+    location: ./ # current directory assumed if field not present
+    traces:
+        - tets.json # at least one trace required
+    # entire trace used if limit not speciiied
+    limit: 
+        type: requests # seconds and requests are supported
+        amount: 2000
+
+    output: result.json # only used in run mode, produced output trace with latencies
+
+registry:
+    - localhost:5005 # at least one registry required for run and warmup mode
+
+warmup: # required for run and warmup mode
+    output: interm_test.json # name of file that holds mapping between trace uri's and hashes
+
+    threads: 10 # how many processes used to push blobs to registry
+
+    random: true # instructs the master to create a random file of the layer size rather than a string of 0's equal to the layer size in the trace
+
