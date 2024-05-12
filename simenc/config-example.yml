@@ -1,0 +1,25 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  cacheparams: 
+      filecachecap: 169 # MB
+      layercachecap: 169 # MB
+      slicecachecap: 169 # MB
+      type: MB
+      ttl: 40000 # 0.001s    
+  filesystem:
+    rootdirectory: /home/simenc/docker_v2    # /var/lib/registry
+http:
+  addr: :5005
+  headers:
+    X-Content-Type-Options: [nosniff]
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3

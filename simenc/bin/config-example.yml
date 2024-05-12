@@ -1,0 +1,39 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: redis
+    hostip: 127.0.0.1
+  cacheparams: 
+      filecachecap: 100 # MB
+      layercachecap: 100 # MB
+      slicecachecap: 100 # MB
+      type: MB
+      ttl: 40000 # 0.001s    
+  filesystem:
+    rootdirectory: /home/simenc/docker_v2    # /var/lib/registry
+http:
+  addr: :5005
+  headers:
+    X-Content-Type-Options: [nosniff]
+redis:
+  addr: 127.0.0.1:6379
+  # simenc: give a name to filedescribtor
+  db: 0
+  pool:
+    maxidle: 16
+    maxactive: 64
+    idletimeout: 300s
+  dialtimeout: 1000ms
+  readtimeout: 1000ms
+  writetimeout: 1000ms
+notifications:
+    registries:
+        - 127.0.0.1
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3

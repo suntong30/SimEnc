@@ -1,0 +1,7 @@
+redis:
+  image: redis
+
+driver:
+  build: .
+  links:
+    - redis

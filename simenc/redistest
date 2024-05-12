@@ -1,0 +1,23 @@
+
+json.get "Blob:File:Recipe::sha256:124c757242f88002a858c23fc79f8262f9587fa30fd92507e586ad074afb42b6" 
+
+json.get "Blob:File:Recipe::sha256:619f4932b7eaf15f992a64cf8b6821c6fd39c20ae7d24a26580e44174a856ce7" 
+
+json.get "Blob:File:Recipe::sha256:7ea47a67709ebea8efed59fbda703dbd00a0d2cae7e2808959744bfa30bfc0e9"
+
+json.get  "Blob:File:Recipe::sha256:fa3f2f277e67c5cbbf1dac21dc27111a60d3cd2ef494d94aa1515d3319f2a245" 
+
+
+
+
+hgetall "files::sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" 
+showed 203 when we pushed ubuntu:xenial first
+still showing 203 when we pushed ubuntu:latest
+
+
+ubuntu:latest (205)k
+json.get  "Blob:File:Recipe::sha256:124c757242f88002a858c23fc79f8262f9587fa30fd92507e586ad074afb42b6"
+
+ubuntu:xenial (203)
+json.get  "Blob:File:Recipe::sha256:ed41cb72e5c918bdbd78e68f02930a3f1cf1d6079402b0a5b19de8508e67b766" 
+e3b0c is showing 205 in the blob descriptor

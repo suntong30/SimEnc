@@ -1,0 +1,33 @@
+version: 0.1
+#proxy:
+#  remoteurl: https://registry-1.docker.io
+log:
+  level: debug
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: inmemory
+  swift: 
+    username: test:tester
+    password: testing
+    authurl: http://127.0.0.1:8080/auth/v1.0
+#    authurl: http://192.168.0.201:8080/auth/v1.0
+#    authurl: http://uet.cs.vt.edu:8080/auth/v1.0
+    insecureskipverify: true 
+    container: my_docker_registry 
+
+#  filesystem:
+#    rootdirectory: /var/lib/registry
+  redirect:
+    disable: true
+#    disable: false
+http:
+  addr: :5005
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3

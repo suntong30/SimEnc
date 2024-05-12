@@ -1,0 +1,111 @@
+version: 0.1
+log:
+  level: debug
+  fields:
+    service: registry
+    environment: development
+  hooks:
+    - type: mail
+      disabled: true
+      levels:
+        - panic
+      options:
+        smtp:
+          addr: mail.example.com:25
+          username: mailuser
+          password: password
+          insecure: true
+        from: sender@example.com
+        to:
+          - errors@example.com
+storage:
+    delete:
+      enabled: true
+    cache:
+        blobdescriptor: redis
+        hostip: 192.168.0.220
+    filesystem:
+        rootdirectory: /var/lib/registry
+    maintenance:
+        uploadpurging:
+            enabled: false
+    registryparams: 
+        repullcntthres: 6
+        comprlevel: 6 #1-6
+        layerslicingfcntthres: 30 
+        layerslicingdirsizethres: 1 # MB
+        compressmethod: lz4 
+    cacheparams: 
+        filecachecap: 169 # MB
+        layercachecap: 169 # MB
+        slicecachecap: 169 # MB
+        type: MB
+        ttl: 40000 # 0.001s    
+http:
+    addr: :5000
+    debug:
+        addr: localhost:5001
+    headers:
+        X-Content-Type-Options: [nosniff]
+redis:
+  addr: 192.168.0.220:6379
+  # simenc: give a name to filedescribtor
+  # db: 0
+  pool:
+    maxidle: 16
+    maxactive: 64
+    idletimeout: 300s
+  dialtimeout: 1000ms
+  readtimeout: 1000ms
+  writetimeout: 1000ms
+notifications:
+    endpoints:
+        - name: local-5003
+          url: http://localhost:5003/callback
+          headers:
+             Authorization: [Bearer <an example token>]
+          timeout: 1s
+          threshold: 10
+          backoff: 1s
+          disabled: true
+        - name: local-8083
+          url: http://localhost:8083/callback
+          timeout: 1s
+          threshold: 10
+          backoff: 1s
+          disabled: true
+    registries:
+        #- 192.168.0.170
+        #- 192.168.0.171
+        #- 192.168.0.172
+        #- 192.168.0.174
+        #- 192.168.0.176
+        #- 192.168.0.177
+        #- 192.168.0.179
+        #- 192.168.0.180
+        - 192.168.0.200
+          #- 192.168.0.201
+          #- 192.168.0.202
+          #- 192.168.0.203
+          #- 192.168.0.204
+          #- 192.168.0.205
+          #- 192.168.0.208
+          #- 192.168.0.209
+          #- 192.168.0.210
+          #- 192.168.0.211
+          #- 192.168.0.212
+          #- 192.168.0.213
+          #- 192.168.0.214
+          #- 192.168.0.215
+          #- 192.168.0.216
+          #- 192.168.0.217
+          #- 192.168.0.218
+          #- 192.168.0.219
+          #- 192.168.0.221
+          #- 192.168.0.222
+          #- 192.168.0.223
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
