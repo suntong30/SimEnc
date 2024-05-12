@@ -1,4 +1,4 @@
-# SimEnc
+# SimEnc: A High-Performance Similarity-Preserving Encryption Approach for Deduplication of Encrypted Docker Images
 
 ## Introduction
 
