@@ -168,6 +168,8 @@ To simplify the deduplication, we show a jupyter notebook file in the `./inferen
 
 Use `./inference/decompress.ipynb` file to generate chunks
 
+The `ubuntu.txt` and `couchbase.txt `lists our evaluated docker images.
+
 2. Calculate the deduplication ratio of two baselines (i.e. the MLE and LSH-based MLE) for the dataset.
 
 The `./inference/MLE_LSHMLE_partial.ipynb` file contains the code of MLE and LSH-based MLE.
