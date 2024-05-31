@@ -31,24 +31,24 @@ The relevant crawler and data mapping code can be found in folder **`./workload`
 The relevant code for partial decode/encode can be found in folder **`./partial`**. You can follow the following steps to compile and generate the **encode** and **decode**  executable files required by the system.
 
 ```shell
-cd ./partial
+cd ./partial/libz_j
 make
 ```
 
 Then you can get **libz_j.a** static link library
 
 ```shell
-g++ decode_docker.cpp -o decode -L. libz_j.a
-g++ encode_docker.cpp -o encode -L. libz_j.a
+g++ decode_docker.cpp -o decode -L. libz_j/libz_j.a
+g++ encode_docker.cpp -o encode -L. libz_j/libz_j.a
 ```
 
 After completing the above steps, you can find the partial decode/encode tool required by the system in the current folder.
 
 ### 3.Redis
 
-We use redis cluster for caching in our system. You can complete a simple cluster configuration according to the following steps.
+We use Redis cluster for caching in our system. You can complete a simple cluster configuration according to the following steps.
 
-Download the redis source code from [Download | Redis](https://redis.io/download/).
+Download the Redis source code from [Download | Redis](https://redis.io/download/).
 
 ```shell
 tar -xzvf redis-x.x.x.tar.gz
@@ -58,7 +58,28 @@ make
 
 Then you can find the executable file **redis-serve** and the cluster management tool **redis-trib.rb** in the *redis-x.x.x/src* directory.
 
-If you have started 6 redis-server instances on local ports 6379~6384, you can start the cluster through the following command.
+Next, we need to start multiple instances and build a cluster. Create a new `cluster` folder, then create several subfolders in the folder, and place a **`redis-serve`** executable file and **`redis.conf`** (to configure the Redis node in the current subfolder) configuration file in each subfolder.
+
+In our experiment, one of the available configurations is as follows:
+
+```
+port 6380 
+cluster-node-timeout 5000
+save ""
+appendonly no
+cluster-enable yes
+bind 0.0.0.0
+protected-mode no
+databases 1
+```
+
+You can start one redis instance in each subfolder using the following command:
+
+```shell
+./redis-serve ./redis.conf
+```
+
+For example, if you have started 6 redis-server instances on local ports 6379~6384, you can start the cluster through the following command.
 
 ```shell
 ./redis-trib.rb create --replicas 1 127.0.0.1:6379 127.0.0.1:6380 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384
